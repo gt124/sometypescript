@@ -11,7 +11,7 @@ const myPromise = new Promise((resolve, error ) => {
 myPromise
     .then(value => {
         return value + ' and bar';
-    })
+    }, () => { console.log("in then")})
     .then(value => {
         return value + ' and bar again';
     })
@@ -25,5 +25,6 @@ myPromise
         console.log(value)
     })
     .catch(err => {
+        console.log('In catch')
         console.log(err)
     })
