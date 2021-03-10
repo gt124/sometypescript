@@ -17,7 +17,7 @@ test('largeLengthOnTop test', () => {
 });
 test('loopThroughAndAdd test', () => {
 
-    let sut = new AddStrings("2", "1");
+    let sut = new AddStrings("fart", "stink");
     let output = sut.loopThroughAndAdd("12345", "678")
     console.log(output)
 })
