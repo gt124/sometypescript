@@ -15,8 +15,21 @@ export class AddStrings{
         //return result
     }
 
-    addTwoNumbersAndCarry(_firstNumber: string, _secondNumber: string, _carry: string = "0"){
+    addTwoNumbersAndCarry(firstNumber: string, secondNumber: string, carry: string = "0"){
         //Take in letters, convert to numbers and add, then if it's a carry
+        const addedNumber = Number(firstNumber) + Number(secondNumber) + Number(carry)
+        let workingNumber: Number = 0
+        if(addedNumber - 10 < 0) {
+            workingNumber = addedNumber
+        }
+        else {
+            carry = "1"
+            workingNumber = addedNumber % 10
+        }
+        return {
+            outNumber: String(workingNumber),
+            outCarry: carry
+        }
     }
 
     loopThroughAndAdd( outFirst: string, outSecond: string){
@@ -26,7 +39,7 @@ export class AddStrings{
         for(let i = largeCount - 1; i >= 0; i--)
         {
             console.log(outFirst[i])
-            //Add two numbers and carry
+            //Add two numbers and carry put in add two numbers and carry
         }
         return {
             outFirst: largeCount,
