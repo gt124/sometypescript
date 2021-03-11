@@ -15,10 +15,29 @@ test('largeLengthOnTop test', () => {
     // }
     console.log("test")
 });
-test('loopThroughAndAdd test', () => {
-
+test('padStringsWithZeroInFrontToMakeSameSize test', () => {
+    // let testola = "hi";
+    // t1 = testola.padStart(3, "0")
+    console.log(t1)
+    let output = null;
     let sut = new AddStrings("fart", "stink");
-    let output = sut.loopThroughAndAdd("12345", "678")
+    output = sut.padStringsWithZeroInFrontToMakeSameSize("13", "5");
+    console.log(output);
+    output = sut.padStringsWithZeroInFrontToMakeSameSize("3", "5");
+    console.log(output);
+
+});
+
+test('loopThroughAndAdd test', () => {
+    let output = null;
+    let sut = new AddStrings("fart", "stink");
+    output = sut.loopThroughAndAdd("51", "3")
+    console.log(output)
+    output = sut.loopThroughAndAdd("5", "3")
+    console.log(output)
+    output = sut.loopThroughAndAdd("5", "6")
+    console.log(output)
+    output = sut.loopThroughAndAdd("7", "6")
     console.log(output)
 })
 ;
