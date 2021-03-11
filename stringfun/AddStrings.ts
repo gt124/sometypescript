@@ -1,68 +1,52 @@
-
-export class AddStrings{
+export class AddStrings {
+    result: string;
 
     constructor(public readonly first: string, public readonly second: string) {
+        this.result = "default";
     }
 
-    AddStrings(){
-        //Get the largest length one on top.
-
-        //const orderedStrings = this.largeLengthOnTop();
-
+    execute() {
+        const orderedStrings = this.largeLengthOnTop();
+        const sameSizeStrings = this.padStringsWithZeroInFrontToMakeSameSize(orderedStrings.first, orderedStrings.second);
 
         //loop through strings adding with a carry
+        const results = this.loopThroughAndAdd(sameSizeStrings.first, sameSizeStrings.second);
 
-        //return result
+        this.result = results.outSum;
+        return this.result;
     }
 
-    addTwoNumbersAndCarry(firstNumber: string, secondNumber: string, carry: string = "0"){
+    addTwoNumbersAndCarry(firstNumber: string, secondNumber: string, carry: boolean = false) {
         //Take in letters, convert to numbers and add, then if it's a carry
         const addedNumber = Number(firstNumber) + Number(secondNumber) + Number(carry)
         let workingNumber: number
-        if(addedNumber - 10 < 0) {
+        if (addedNumber - 10 < 0) {
+            carry = false
             workingNumber = addedNumber
-        }
-        else {
-            carry = "1"
+        } else {
+            carry = true
             workingNumber = addedNumber % 10
         }
-        console.log("WorkingNumber: " + String(workingNumber))
+        //console.log("WorkingNumber: " + String(workingNumber))
         return {
             outNumber: String(workingNumber),
             outCarry: carry
         }
     }
 
-    loopThroughAndAdd( outFirst: string, outSecond: string){
+    loopThroughAndAdd(outFirst: string, outSecond: string) {
         const largeCount = outFirst.length;
-        const smallCount = outSecond.length;
-        const diffCount = largeCount - smallCount;
-        let carry: string = "0";
+        let carry: boolean = false;
         let output: string = "";
 
-        for(let i = largeCount - 1; i >= 0; i--)
-        {
-            if( i >= diffCount ){
-                let sumWithCarry = this.addTwoNumbersAndCarry(outFirst[i], "0", carry)
-                output = sumWithCarry.outNumber + output;
-                carry = sumWithCarry.outCarry;
-                console.log("if: " + outFirst[i])
-            }
-            else
-            {
-                let sumWithCarry = this.addTwoNumbersAndCarry(outFirst[i], outSecond[i], carry)
-                output = sumWithCarry.outNumber + output;
-                carry = sumWithCarry.outCarry;
-                console.log("else: " + outFirst[i])
-
-            }
-            //console.log(outFirst[i])
-            //Add two numbers and carry put in add two numbers and carry
+        for (let i = largeCount - 1; i >= 0; i--) {
+            let sumWithCarry = this.addTwoNumbersAndCarry(outFirst[i], outSecond[i], carry)
+            output = sumWithCarry.outNumber + output;
+            carry = sumWithCarry.outCarry;
+            //          console.log(`outfirst:  ${outFirst[i]}, output: ${output}`)
         }
-        //The last carry if it exists
-        if(carry === "1"){
-            output = carry + output;
-            console.log("last carry fires")
+        if (carry) {
+            output = "1" + output;
         }
         return {
             outSum: output,
@@ -70,35 +54,36 @@ export class AddStrings{
         }
     }
 
-    padStringsWithZeroInFrontToMakeSameSize(first: string, second: string){
+    padStringsWithZeroInFrontToMakeSameSize(first: string, second: string) {
         const firstLength = first.length;
         const secondLength = second.length;
 
-        if(firstLength === secondLength){
+        if (firstLength === secondLength) {
             return {
                 first: first,
                 second: second
             }
         }
 
-        if(firstLength > secondLength){
+        if (firstLength > secondLength) {
             return {
                 first: first,
                 second: second.padStart(first.length, "0")
             }
 
         }
-        throw("error")
+        throw("error, first argument needs to be bigger or equal")
 
     }
-    largeLengthOnTop(){
-        if(this.first.length === this.second.length ){
+
+    largeLengthOnTop() {
+        if (this.first.length === this.second.length) {
             return {
                 first: this.first,
                 second: this.second
             }
         }
-        if(this.first.length > this.second.length) {
+        if (this.first.length > this.second.length) {
             return {
                 first: this.first,
                 second: this.second

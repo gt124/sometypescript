@@ -6,13 +6,14 @@ test('largeLengthOnTop test', () => {
     let output = sut.largeLengthOnTop()
     console.log(output)
 
-//    expect(sut.CalcArea(1, 3)).toBe(3);
-//    let output = sut.PackStrings();
+    console.log("test")
+});
+test('execute test', () => {
+    let sut = new AddStrings("25", "175");
+    let output = sut.execute()
+    expect(output).toBe("200")
+    console.log(output)
 
-    // joe = {
-    //     asut: "some",
-    //     redos: "other"
-    // }
     console.log("test")
 });
 test('padStringsWithZeroInFrontToMakeSameSize test', () => {
@@ -31,14 +32,22 @@ test('padStringsWithZeroInFrontToMakeSameSize test', () => {
 test('loopThroughAndAdd test', () => {
     let output = null;
     let sut = new AddStrings("fart", "stink");
-    output = sut.loopThroughAndAdd("51", "3")
+    output = sut.loopThroughAndAdd("51", "73")
+    expect(output.outSum).toBe("124")
+    expect(output.outCarry).toBe(true)
     console.log(output)
+    output = sut.loopThroughAndAdd("51", "03")
+    expect(output.outSum).toBe("54")
+    expect(output.outCarry).toBe(false)
     output = sut.loopThroughAndAdd("5", "3")
-    console.log(output)
+    expect(output.outSum).toBe("8")
+    expect(output.outCarry).toBe(false)
     output = sut.loopThroughAndAdd("5", "6")
-    console.log(output)
+    expect(output.outSum).toBe("11")
+    expect(output.outCarry).toBe(true)
     output = sut.loopThroughAndAdd("7", "6")
-    console.log(output)
+    expect(output.outSum).toBe("13")
+    expect(output.outCarry).toBe(true)
 })
 ;
 test('addTwoNumbersAndCarry test', () => {
@@ -46,15 +55,15 @@ test('addTwoNumbersAndCarry test', () => {
     let sut = new AddStrings("does not matter", "does not matter");
     let output = sut.addTwoNumbersAndCarry("5", "2")
     expect(output.outNumber).toBe("7");
-    expect(output.outCarry).toBe("0");
+    expect(output.outCarry).toBe(false);
 
     output = sut.addTwoNumbersAndCarry("6", "7")
     expect(output.outNumber).toBe("3");
-    expect(output.outCarry).toBe("1");
+    expect(output.outCarry).toBe(true);
 
-    output = sut.addTwoNumbersAndCarry("7", "6", "1")
+    output = sut.addTwoNumbersAndCarry("7", "6", true)
     expect(output.outNumber).toBe("4");
-    expect(output.outCarry).toBe("1");
+    expect(output.outCarry).toBe(true);
 
     console.log(output)
 })
