@@ -19,7 +19,7 @@ test('execute test', () => {
 test('padStringsWithZeroInFrontToMakeSameSize test', () => {
     // let testola = "hi";
     // t1 = testola.padStart(3, "0")
-    console.log(t1)
+    //console.log(t1)
     let output = null;
     let sut = new AddStrings("fart", "stink");
     output = sut.padStringsWithZeroInFrontToMakeSameSize("13", "5");
