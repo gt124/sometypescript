@@ -15,6 +15,8 @@ test('execute test', () => {
     console.log(output)
 
     console.log("test")
+
+    console.log(output)
 });
 test('padStringsWithZeroInFrontToMakeSameSize test', () => {
     // let testola = "hi";
