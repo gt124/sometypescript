@@ -1,6 +1,7 @@
 //import {AddStrings} from './AddStrings'; //Can't get imports to work
 const {AddStrings} = require("./AddStrings")
 
+
 test('largeLengthOnTop test', () => {
     let sut = new AddStrings("2", "1");
     let output = sut.largeLengthOnTop()
@@ -34,20 +35,20 @@ test('padStringsWithZeroInFrontToMakeSameSize test', () => {
 test('loopThroughAndAdd test', () => {
     let output = null;
     let sut = new AddStrings("fart", "stink");
-    output = sut.loopThroughAndAdd("51", "73")
+    output = sut.loopThroughAndAdd("51", "73", sut.addTwoNumbersAndCarry)
     expect(output.outSum).toBe("124")
     expect(output.outCarry).toBe(true)
     console.log(output)
-    output = sut.loopThroughAndAdd("51", "03")
+    output = sut.loopThroughAndAdd("51", "03", sut.addTwoNumbersAndCarry)
     expect(output.outSum).toBe("54")
     expect(output.outCarry).toBe(false)
-    output = sut.loopThroughAndAdd("5", "3")
+    output = sut.loopThroughAndAdd("5", "3", sut.addTwoNumbersAndCarry)
     expect(output.outSum).toBe("8")
     expect(output.outCarry).toBe(false)
-    output = sut.loopThroughAndAdd("5", "6")
+    output = sut.loopThroughAndAdd("5", "6", sut.addTwoNumbersAndCarry)
     expect(output.outSum).toBe("11")
     expect(output.outCarry).toBe(true)
-    output = sut.loopThroughAndAdd("7", "6")
+    output = sut.loopThroughAndAdd("7", "6", sut.addTwoNumbersAndCarry)
     expect(output.outSum).toBe("13")
     expect(output.outCarry).toBe(true)
 })

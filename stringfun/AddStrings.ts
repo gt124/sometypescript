@@ -10,7 +10,7 @@ export class AddStrings {
         const sameSizeStrings = this.padStringsWithZeroInFrontToMakeSameSize(orderedStrings.first, orderedStrings.second);
 
         //loop through strings adding with a carry
-        const results = this.loopThroughAndAdd(sameSizeStrings.first, sameSizeStrings.second);
+        const results = this.loopThroughAndAdd(sameSizeStrings.first, sameSizeStrings.second, this.addTwoNumbersAndCarry);
 
         this.result = results.outSum;
         return this.result;
@@ -34,13 +34,15 @@ export class AddStrings {
         }
     }
 
-    loopThroughAndAdd(outFirst: string, outSecond: string) {
+    loopThroughAndAdd(outFirst: string, outSecond: string, adder: { (firstNumber: string, secondNumber: string, carry?: boolean): { outNumber: string; outCarry: boolean; } }) {
         const largeCount = outFirst.length;
         let carry: boolean = false;
         let output: string = "";
 
         for (let i = largeCount - 1; i >= 0; i--) {
-            let sumWithCarry = this.addTwoNumbersAndCarry(outFirst[i], outSecond[i], carry)
+            //let sumWithCarry = this.addTwoNumbersAndCarry(outFirst[i], outSecond[i], carry)
+            // @ts-ignore
+            let sumWithCarry: { outNumber: string, outCarry: boolean } = adder(outFirst[i], outSecond[i], carry)
             output = sumWithCarry.outNumber + output;
             carry = sumWithCarry.outCarry;
             //          console.log(`outfirst:  ${outFirst[i]}, output: ${output}`)
