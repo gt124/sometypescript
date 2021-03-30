@@ -1,0 +1,6 @@
+I think if you start with a nodejs app then the rest works, there is
+a typescript button at the bottom of the ide.
+
+Select bundled under the typescript configuration and you get the ide support.
+then npm install ts-node
+
